@@ -1,9 +1,12 @@
 import React from 'react';
 import './App.css';
-// First commit
+import StarWarsPlanets from './pages/StarWarsPlanets';
+
 function App() {
   return (
-    <span>Hello, App!</span>
+    <div className="App">
+      <StarWarsPlanets />
+    </div>
   );
 }
 
