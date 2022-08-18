@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import Context from '../context/Context';
 
 export default function Table() {
-  const { result, loading } = useContext(Context);
+  const { result, loading, planetFilter } = useContext(Context);
+  console.log(result);
 
   return (
     <div>
@@ -21,11 +22,13 @@ export default function Table() {
             </tr>
           </thead>
           <tbody>
-            { result.map((planet) => (
-              <tr key={ planet.diameter }>
-                { Object.values(planet).map((value) => <td key={ value }>{value}</td>) }
-              </tr>
-            )) }
+            { result.filter((item) => item.name.toLowerCase()
+              .includes(planetFilter.toLowerCase()))
+              .map((planet) => (
+                <tr key={ planet.diameter }>
+                  { Object.values(planet).map((value) => <td key={ value }>{value}</td>) }
+                </tr>
+              )) }
           </tbody>
         </table>
       )}

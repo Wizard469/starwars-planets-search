@@ -5,6 +5,7 @@ import Context from './Context';
 export default function Provider({ children }) {
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [planetFilter, setPlanetFilter] = useState('');
 
   const API = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
@@ -22,8 +23,15 @@ export default function Provider({ children }) {
     fetchPlanets();
   }, []);
 
+  const context = {
+    result,
+    loading,
+    planetFilter,
+    setPlanetFilter,
+  };
+
   return (
-    <Context.Provider value={ { result, loading } }>
+    <Context.Provider value={ context }>
       { children }
     </Context.Provider>
   );
