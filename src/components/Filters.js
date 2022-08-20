@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Context from '../context/Context';
 
 export default function Filters() {
@@ -10,16 +10,24 @@ export default function Filters() {
     },
   );
 
-  const columnFilter = [
-    'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water',
-  ];
-
-  const compFilter = ['maior que', 'menor que', 'igual a'];
-
   const { planetFilter, setPlanetFilter,
     filterByNumericValues, setFilterByNumericValues } = useContext(Context);
 
+  const columnList = [
+    'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water',
+  ];
+
+  const columnFilter = columnList
+    .filter((column) => !filterByNumericValues.find((item) => column === item.column));
+
+  const compFilter = ['maior que', 'menor que', 'igual a'];
+
   const { column, comparison, value } = newFilters;
+
+  useEffect(() => {
+    setNewFilters((prevState) => ({ ...prevState, column: columnFilter[0] }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterByNumericValues]);
 
   const emptyInput = () => {
     if (newFilters.value === '0') return setNewFilters({ ...newFilters, value: '' });
@@ -40,15 +48,17 @@ export default function Filters() {
           />
         </label>
       </div>
-      <select
-        name="column-filter"
-        id="column-filter"
-        value={ column }
-        data-testid="column-filter"
-        onChange={ (e) => setNewFilters({ ...newFilters, column: e.target.value }) }
-      >
-        { columnFilter.map((el) => <option key={ el }>{ el }</option>)}
-      </select>
+      { columnFilter.length > 0 && (
+        <select
+          name="column-filter"
+          id="column-filter"
+          value={ column }
+          data-testid="column-filter"
+          onChange={ (e) => setNewFilters({ ...newFilters, column: e.target.value }) }
+        >
+          { columnFilter.map((el) => <option key={ el } value={ el }>{ el }</option>)}
+        </select>
+      )}
       <select
         name="comparison-filter"
         id="comparison-filter"
@@ -66,6 +76,11 @@ export default function Filters() {
           placeholder="Type a value"
           value={ value }
           data-testid="value-filter"
+          min="0"
+          onKeyPress={
+            (e) => e.key === 'Enter'
+            && setFilterByNumericValues([...filterByNumericValues, newFilters])
+          }
           onClick={ emptyInput }
           onChange={ (e) => setNewFilters({ ...newFilters, value: e.target.value }) }
         />
@@ -73,11 +88,19 @@ export default function Filters() {
       <button
         type="button"
         data-testid="button-filter"
+        disabled={ columnFilter.length === 0 }
         onClick={
           () => setFilterByNumericValues([...filterByNumericValues, newFilters])
         }
       >
-        Filtrar
+        FILTRAR
+      </button>
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ () => setFilterByNumericValues([]) }
+      >
+        REMOVER FILTROS
       </button>
     </form>
   );

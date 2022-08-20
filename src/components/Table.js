@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
-import '../styles/loading/loading.css';
+import '../styles/table/Table.css';
 
 export default function Table() {
-  const { result, loading, planetFilter, filterByNumericValues } = useContext(Context);
+  const {
+    result, loading, planetFilter, filterByNumericValues,
+  } = useContext(Context);
 
   return (
     <div>
