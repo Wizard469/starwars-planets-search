@@ -1,0 +1,9 @@
+#loading {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif') no-repeat center center;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 9999999;
+}

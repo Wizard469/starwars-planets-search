@@ -6,6 +6,7 @@ export default function Provider({ children }) {
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(true);
   const [planetFilter, setPlanetFilter] = useState('');
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   const API = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
@@ -28,6 +29,8 @@ export default function Provider({ children }) {
     loading,
     planetFilter,
     setPlanetFilter,
+    filterByNumericValues,
+    setFilterByNumericValues,
   };
 
   return (
