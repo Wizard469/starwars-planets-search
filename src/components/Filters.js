@@ -77,10 +77,6 @@ export default function Filters() {
           value={ value }
           data-testid="value-filter"
           min="0"
-          onKeyPress={
-            (e) => e.key === 'Enter'
-            && setFilterByNumericValues([...filterByNumericValues, newFilters])
-          }
           onClick={ emptyInput }
           onChange={ (e) => setNewFilters({ ...newFilters, value: e.target.value }) }
         />
