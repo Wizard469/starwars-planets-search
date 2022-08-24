@@ -1,0 +1,98 @@
+.other-inputs-n-buttons {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+form input, form button, form select {
+  background-color: rgb(28, 28, 28);
+  font-weight: 700;
+  padding: 5px 10px;
+}
+
+.other-inputs-n-buttons input {
+  background-color: rgb(15, 15, 15);
+  border-bottom: 1px solid rgb(70, 70, 70);
+  border-left: none;
+  border-radius: 50px;
+  border-right: none;
+  border-top: none;
+  color: white;
+  width: 8rem;
+}
+
+.planet-input input {
+  border: 2px solid rgb(20, 20, 20);
+  border-radius: 50px;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
+  color: white;
+  font-weight: 700;
+  padding: 15px;
+  transition: all ease 0.5s;
+}
+
+.other-inputs-n-buttons input:hover {
+  background-color: rgb(27, 27, 27);
+  border-bottom: 1px solid rgb(70, 70, 70);
+}
+
+.other-inputs-n-buttons label {
+  align-items: flex-start;
+  color: rgb(230, 230, 230);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+}
+
+form select {
+  background-color: rgb(25, 25, 25);
+  border-bottom: 1px solid rgb(60, 60, 60);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  color: white;
+}
+
+form select option {
+  background-color: rgb(50, 50, 50);
+  border: none;
+  color: white;
+}
+
+form button {
+  border: 1px solid yellow;
+  color: yellow;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 25px 10px;
+}
+
+form button:hover {
+  background-color: rgb(15, 15, 15);
+  box-shadow: 0 0 10px yellow;
+  transition: all ease 0.3s;
+}
+
+form button:active {
+  box-shadow: none;
+  transform: scale(1.1);
+  transition: all ease 0.1s;
+}
+
+.planet-input {
+  padding: 10px;
+}
+
+.planet-input input:focus {
+  background-color: rgb(15, 15, 15);
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  outline: none;
+}
+
+.planet-input input:hover {
+  background-color: rgb(35, 35, 35);
+}

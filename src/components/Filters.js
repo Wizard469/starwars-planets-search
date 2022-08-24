@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Context from '../context/Context';
+import '../styles/filters/Filters.css';
 
 export default function Filters() {
   const [newFilters, setNewFilters] = useState(
@@ -35,7 +36,7 @@ export default function Filters() {
 
   return (
     <form>
-      <div>
+      <div className="planet-input">
         <label htmlFor="planet-filter">
           <input
             type="text"
@@ -48,56 +49,66 @@ export default function Filters() {
           />
         </label>
       </div>
-      { columnFilter.length > 0 && (
-        <select
-          name="column-filter"
-          id="column-filter"
-          value={ column }
-          data-testid="column-filter"
-          onChange={ (e) => setNewFilters({ ...newFilters, column: e.target.value }) }
+      <div className="other-inputs-n-buttons">
+        { columnFilter.length > 0 && (
+          <label htmlFor="column-filter">
+            Coluna
+            <select
+              name="column-filter"
+              id="column-filter"
+              value={ column }
+              data-testid="column-filter"
+              onChange={ (e) => setNewFilters({ ...newFilters, column: e.target.value }) }
+            >
+              {columnFilter.map((el) => <option key={ el } value={ el }>{ el }</option>)}
+            </select>
+          </label>
+        )}
+        <label htmlFor="comparison-filter">
+          Operador
+          <select
+            name="comparison-filter"
+            id="comparison-filter"
+            value={ comparison }
+            data-testid="comparison-filter"
+            onChange={
+              (e) => setNewFilters({ ...newFilters, comparison: e.target.value })
+            }
+          >
+            { compFilter.map((el) => <option key={ el } value={ el }>{ el }</option>) }
+          </select>
+        </label>
+        <label htmlFor="value-filter">
+          <input
+            type="number"
+            name="value-filter"
+            id="value-filter"
+            placeholder="Type a value"
+            value={ value }
+            data-testid="value-filter"
+            min="0"
+            onClick={ emptyInput }
+            onChange={ (e) => setNewFilters({ ...newFilters, value: e.target.value }) }
+          />
+        </label>
+        <button
+          type="button"
+          data-testid="button-filter"
+          disabled={ columnFilter.length === 0 }
+          onClick={
+            () => setFilterByNumericValues([...filterByNumericValues, newFilters])
+          }
         >
-          { columnFilter.map((el) => <option key={ el } value={ el }>{ el }</option>)}
-        </select>
-      )}
-      <select
-        name="comparison-filter"
-        id="comparison-filter"
-        value={ comparison }
-        data-testid="comparison-filter"
-        onChange={ (e) => setNewFilters({ ...newFilters, comparison: e.target.value }) }
-      >
-        { compFilter.map((el) => <option key={ el } value={ el }>{ el }</option>) }
-      </select>
-      <label htmlFor="value-filter">
-        <input
-          type="number"
-          name="value-filter"
-          id="value-filter"
-          placeholder="Type a value"
-          value={ value }
-          data-testid="value-filter"
-          min="0"
-          onClick={ emptyInput }
-          onChange={ (e) => setNewFilters({ ...newFilters, value: e.target.value }) }
-        />
-      </label>
-      <button
-        type="button"
-        data-testid="button-filter"
-        disabled={ columnFilter.length === 0 }
-        onClick={
-          () => setFilterByNumericValues([...filterByNumericValues, newFilters])
-        }
-      >
-        FILTRAR
-      </button>
-      <button
-        type="button"
-        data-testid="button-remove-filters"
-        onClick={ () => setFilterByNumericValues([]) }
-      >
-        REMOVER FILTROS
-      </button>
+          FILTRAR
+        </button>
+        <button
+          type="button"
+          data-testid="button-remove-filters"
+          onClick={ () => setFilterByNumericValues([]) }
+        >
+          REMOVER FILTROS
+        </button>
+      </div>
     </form>
   );
 }

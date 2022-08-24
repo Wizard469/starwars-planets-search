@@ -16,12 +16,15 @@
 
 .filtered-table div {
   align-items: space-around;
+  color: white;
   display: flex;
   padding: 0.2rem;
 }
 
 .filtered-table div div {
   align-items: space-around;
+  background-color: rgb(20, 20, 20);
   display: flex;
-  padding-left: 1rem;
+  padding: 0.5rem;
+  padding-top: 0.7rem;
 }

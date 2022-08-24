@@ -1,5 +1,27 @@
+table {
+  border-collapse: collapse;
+  border-left: solid transparent;
+  border-right: solid transparent;
+  color: white;
+}
+
+table thead {
+  background-color: rgb(20, 20, 20);
+}
+
+
+table tbody {
+  border-left: solid transparent;
+  border-right: solid transparent;
+}
+
+tr:nth-child( even ) {
+  background-color: rgb(25, 25, 25);
+}
+
 #loading {
-  background: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif') no-repeat center center;
+  background: url('http://i-casts.com/wp-content/uploads/2016/07/loading.gif') no-repeat center center;
+  background-color: black;
   height: 100%;
   left: 0;
   position: absolute;
